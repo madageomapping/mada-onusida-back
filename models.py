@@ -82,8 +82,6 @@ class action(models.Model):
     description = models.TextField(null=True)
     #region = models.OneToOneField('mdgRegion', verbose_name="région") # Ici "OneToOneField" précise qu'une "action" ne se déroule que dans une région.
     localisation = models.CharField(max_length=50)
-    latitude = models.CharField(max_length=50)
-    longitude = models.CharField(max_length=50)
     illustration = models.ImageField(upload_to="media/illustration/%Y/%m", null=True)
     responsable = models.ForeignKey(utilisateur, limit_choices_to={'is_responsable': True}, verbose_name="nom du responsable de la fiche")
     organisme = models.ForeignKey(organisme, verbose_name="organisme maitre d'oeuvre")
@@ -92,6 +90,9 @@ class action(models.Model):
     montant = models.PositiveIntegerField("Montant", null=True)
     creation = models.DateTimeField("Date de création fiche") #auto_now_add=True, auto_now=True)
     maj = models.DateTimeField("Date de mise à jour fiche", auto_now_add=True, auto_now=True)
+    geom = models.GeometryField(srid=4326)
+    
+    objects = models.GeoManager()
      
     class Meta:
         verbose_name = "action"
