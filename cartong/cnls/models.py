@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -*-
 from django.db import models
-from django.contrib.gis.db import models as gismodels
+#from django.contrib.gis.db import models as gismodels
 from django.contrib.auth.models import User
 from django.utils.timezone import now
 
@@ -263,17 +263,6 @@ class ActionLocalisation(models.Model):
     fokontany = models.CharField(max_length = 50,blank=True, null=True,verbose_name="Fokontany")
     latitude = models.CharField(max_length = 50,blank=True, null=True,verbose_name="latitude")
     longitude = models.CharField(max_length = 50,blank=True, null=True,verbose_name="Longitude")
-    def bascule(self):
-       print "aaaaaaaaaa",self.region_status
-       if self.region_status == 1:
-           readonly_fields=('fokontany', )
-           
-       else:
-           readonly_fields=('region', )
-           
-        
-     
-    
 
     class Meta:
         verbose_name_plural = "Localisation"
