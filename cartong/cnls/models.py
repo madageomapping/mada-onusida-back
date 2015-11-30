@@ -20,7 +20,7 @@ class Status(models.Model):
         verbose_name_plural = "Status"
     
     def __unicode__(self):
-        return u"Status: %s" % self.nommadageomapping
+        return u"Status: %s" % self.nom
 
 REGION_STATUS = (
     (0, '  '),
@@ -82,7 +82,6 @@ class Cible(models.Model):
     class Meta:
         verbose_name_plural = "Cibles"
 
-    madageomapping
     def __unicode__(self):
         return u"Cible : %s" % self.nom
 
@@ -125,7 +124,7 @@ class Utilisateur(models.Model):
 #    organisme = models.ForeignKey('Organisme') # Va servir plus tard de groupe pour inclure les "users"
     is_responsable = models.BooleanField("Responsable autorisé à éditer la fiche", default=False)
 
-    class Meta:madageomapping
+    class Meta:
         verbose_name = "Utilisateur"
         verbose_name_plural = "Utilisateurs"
         ordering = ['user']
@@ -149,7 +148,7 @@ class Typeintervention(models.Model):
         (u'ccc', u'CCC'),
         (u'promotion de préservatifs', u'Promotion de préservatifs'),
         (u'communication de masse', u'Communication de masse'),
-        (u'prise en charge IST', u'Prise en chamadageomappingrge IST'),
+        (u'prise en charge IST', u'Prise en charge IST'),
         (u'prise en charge médicale', u'Prise en charge médicale'),
         (u'soutien', u'Soutien'),
         (u'coordination', u'Coordination'),
@@ -172,7 +171,7 @@ class Action(models.Model):
     organisme = models.ForeignKey(Organisme, verbose_name="organisme maitre d'oeuvre")
 #    typeintervention = models.ManyToManyField('Typeintervention', verbose_name="Types d'intervention") 
 #    typeintervention = models.ForeignKey('Typeintervention', verbose_name="Types d'intervention") 
-#    cible = models.ManyToManyField('Cible', vemadageomappingrbose_name="Cibles")
+#    cible = models.ManyToManyField('Cible', verbose_name="Cibles")
     
     date_debut = models.DateField("Date de démarrage", auto_now_add=False, auto_now=False)
     date_fin = models.DateField("Date de fin", auto_now_add=False, auto_now=False)
@@ -181,11 +180,11 @@ class Action(models.Model):
 #    createur = models.ForeignKey(Utilisateur, limit_choices_to={'is_responsable': True}, verbose_name="nom du responsable de la fiche",to_field='user')
     createur = models.ForeignKey(Utilisateur,  verbose_name="Nom du responsable de la fiche")
     description = models.TextField(null=True,  verbose_name="Description de l'action")
-    commentaire = models.TextField(null=True, vmadageomappingerbose_name="Observations sur l'action")
+    commentaire = models.TextField(null=True, verbose_name="Observations sur l'action")
 
     montant_prevu = models.PositiveIntegerField(null=True, verbose_name="Montant prévu")
     montant_disponible = models.PositiveIntegerField(null=True, verbose_name="Montant disponible")
-    devise = models.CharField(max_length=10,chomadageomappingices=DEVISE, default='EUR')
+    devise = models.CharField(max_length=10,choices=DEVISE, default='EUR')
     bailleurfond = models.CharField(max_length = 100,blank=True, null=True, verbose_name="Bailleurs de fond")
     origine = models.CharField(max_length = 100,verbose_name="Origine de la donnée")
     contact = models.EmailField(max_length = 100,verbose_name="Mail du contact à l'origine de la donnée")
@@ -204,7 +203,7 @@ class Action(models.Model):
      
     class Meta:
         verbose_name = "Action"
-        verbose_name_plural = "Actions"madageomapping
+        verbose_name_plural = "Actions"
         ordering = ['-creation']
         
     def __unicode__(self):
