@@ -6,7 +6,7 @@ from leaflet.admin import LeafletGeoAdmin
 
 # Register your models here.
 
-from models import Organisme, Utilisateur, Action, Typeintervention, Status,Cible,ActionCible,ActionTypeintervention,ActionLocalisation
+from .models import Organisme, Utilisateur, Action, Typeintervention, Status,Cible,ActionCible,ActionTypeintervention,ActionLocalisation
 
 #class ActionAdmin(admin.ModelAdmin):
 #    fields = ['Typeinterventions', 'titre', 'date', 'duree', 'description', 'localisation', 'illustration',  'responsable', 'Avancement', 'Organisme']
